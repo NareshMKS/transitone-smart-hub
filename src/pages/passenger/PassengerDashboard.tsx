@@ -7,69 +7,44 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   MapPin, 
   Clock, 
-  CreditCard, 
-  Ticket, 
   Navigation,
   Search,
   Star,
-  QrCode,
   History,
   AlertCircle,
-  CheckCircle2
+  CheckCircle2,
+  Siren
 } from "lucide-react";
 
 const PassengerDashboard = () => {
   const [searchFrom, setSearchFrom] = useState("");
   const [searchTo, setSearchTo] = useState("");
 
-  const upcomingTrips = [
-    {
-      id: "TKT-001",
-      from: "Central Station",
-      to: "Tech Park",
-      route: "Route 15A",
-      time: "09:30 AM",
-      busNumber: "TN-123",
-      status: "confirmed",
-      estimatedArrival: "5 min"
-    },
-    {
-      id: "TKT-002", 
-      from: "Mall Junction",
-      to: "Airport",
-      route: "Route 22B",
-      time: "02:15 PM",
-      busNumber: "TN-456",
-      status: "upcoming",
-      estimatedArrival: "3 hours"
-    }
-  ];
-
   const tripHistory = [
     {
       id: "TKT-098",
-      from: "Home Station",
-      to: "Office Complex",
+      from: "Jalandhar Bus Stand",
+      to: "Bathinda Depot",
       date: "Dec 12, 2024",
-      amount: "₹25",
+      amount: "₹120",
       status: "completed",
       rating: 5
     },
     {
       id: "TKT-097",
-      from: "Shopping Mall",
-      to: "Central Station", 
+      from: "Mohali ISBT",
+      to: "Amritsar Bus Stand", 
       date: "Dec 11, 2024",
-      amount: "₹18",
+      amount: "₹180",
       status: "completed",
       rating: 4
     },
     {
       id: "TKT-096",
-      from: "Airport",
-      to: "City Center",
+      from: "Chandigarh ISBT",
+      to: "Ludhiana Junction",
       date: "Dec 10, 2024",
-      amount: "₹45",
+      amount: "₹95",
       status: "completed",
       rating: 5
     }
@@ -77,50 +52,50 @@ const PassengerDashboard = () => {
 
   const availableRoutes = [
     {
-      route: "Route 15A",
-      from: "Central Station",
-      to: "Tech Park",
-      duration: "25 min",
-      price: "₹22",
+      route: "Route PB-15A",
+      from: "Amritsar Bus Stand",
+      to: "Chandigarh ISBT",
+      duration: "4 hr 30 min",
+      price: "₹220",
       nextBus: "5 min",
-      frequency: "Every 10 min"
+      frequency: "Every 30 min"
     },
     {
-      route: "Route 8C", 
-      from: "Central Station",
-      to: "Tech Park",
-      duration: "32 min",
-      price: "₹20",
+      route: "Route PB-8C", 
+      from: "Ludhiana Junction",
+      to: "Patiala Bus Stand",
+      duration: "2 hr 10 min",
+      price: "₹150",
       nextBus: "12 min",
-      frequency: "Every 15 min"
+      frequency: "Every 45 min"
     },
     {
-      route: "Route 11A",
-      from: "Central Station", 
-      to: "Tech Park",
-      duration: "28 min",
-      price: "₹25",
+      route: "Route PB-11A",
+      from: "Jalandhar Bus Stand", 
+      to: "Bathinda Depot",
+      duration: "3 hr 50 min",
+      price: "₹200",
       nextBus: "8 min",
-      frequency: "Every 12 min"
+      frequency: "Every 1 hour"
     }
   ];
 
   const notifications = [
     {
       type: "delay",
-      message: "Your Route 15A bus is delayed by 3 minutes",
+      message: "Your Route PB-15A bus from Amritsar is delayed by 15 minutes",
       time: "2 min ago",
       severity: "medium"
     },
     {
       type: "arrival",
-      message: "Bus TN-123 arriving at Central Station in 2 minutes",
+      message: "Bus PB-10-1234 arriving at Chandigarh ISBT in 10 minutes",
       time: "5 min ago", 
       severity: "info"
     },
     {
       type: "promotion",
-      message: "25% off on weekend travel passes",
+      message: "Flat 20% off on Punjab State Roadways online bookings this week",
       time: "1 hour ago",
       severity: "low"
     }
@@ -128,10 +103,6 @@ const PassengerDashboard = () => {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "confirmed":
-        return <Badge className="bg-secondary text-secondary-foreground">Confirmed</Badge>;
-      case "upcoming":
-        return <Badge variant="outline">Upcoming</Badge>;
       case "completed":
         return <Badge className="bg-muted text-muted-foreground">Completed</Badge>;
       default:
@@ -157,13 +128,10 @@ const PassengerDashboard = () => {
           <p className="text-muted-foreground">Plan your journey and track your rides</p>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" className="gap-2">
-            <QrCode className="h-4 w-4" />
-            My Tickets
-          </Button>
-          <Button variant="hero" className="gap-2">
-            <CreditCard className="h-4 w-4" />
-            Top Up Wallet
+          {/* SOS Button */}
+          <Button variant="destructive" className="gap-2">
+            <Siren className="h-4 w-4" />
+            SOS
           </Button>
         </div>
       </div>
@@ -210,14 +178,10 @@ const PassengerDashboard = () => {
 
       {/* Main Content Tabs */}
       <Tabs defaultValue="routes" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4 lg:w-fit">
+        <TabsList className="grid w-full grid-cols-3 lg:w-fit">
           <TabsTrigger value="routes" className="gap-2">
             <Navigation className="h-4 w-4" />
             Routes
-          </TabsTrigger>
-          <TabsTrigger value="tickets" className="gap-2">
-            <Ticket className="h-4 w-4" />
-            My Tickets
           </TabsTrigger>
           <TabsTrigger value="history" className="gap-2">
             <History className="h-4 w-4" />
@@ -229,6 +193,7 @@ const PassengerDashboard = () => {
           </TabsTrigger>
         </TabsList>
 
+        {/* Routes */}
         <TabsContent value="routes" className="space-y-4">
           <Card className="bg-card/50 backdrop-blur-sm border border-border/50">
             <CardHeader>
@@ -263,10 +228,9 @@ const PassengerDashboard = () => {
                         <div className="font-bold text-lg text-foreground">{route.price}</div>
                         <div className="text-sm text-muted-foreground">per ticket</div>
                       </div>
-                      <Button variant="hero" size="sm" className="gap-2">
-                        <Ticket className="h-4 w-4" />
+                      {/**<Button variant="hero" size="sm" className="gap-2">
                         Book
-                      </Button>
+                      </Button>**/}
                     </div>
                   </div>
                 ))}
@@ -275,62 +239,7 @@ const PassengerDashboard = () => {
           </Card>
         </TabsContent>
 
-        <TabsContent value="tickets" className="space-y-4">
-          <Card className="bg-card/50 backdrop-blur-sm border border-border/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Ticket className="h-5 w-5 text-primary" />
-                Active Tickets
-              </CardTitle>
-              <CardDescription>Your current and upcoming bookings</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {upcomingTrips.map((trip) => (
-                  <div key={trip.id} className="p-4 bg-muted/30 rounded-lg border">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-secondary/20 rounded-full">
-                          <QrCode className="h-5 w-5 text-secondary" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-foreground">{trip.id}</div>
-                          <div className="text-sm text-muted-foreground">{trip.route} • {trip.busNumber}</div>
-                        </div>
-                      </div>
-                      {getStatusBadge(trip.status)}
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <div className="text-muted-foreground">Journey</div>
-                        <div className="font-medium text-foreground">{trip.from} → {trip.to}</div>
-                      </div>
-                      <div>
-                        <div className="text-muted-foreground">Departure</div>
-                        <div className="font-medium text-foreground">{trip.time}</div>
-                      </div>
-                      <div>
-                        <div className="text-muted-foreground">Arrival</div>
-                        <div className="font-medium text-secondary">{trip.estimatedArrival}</div>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 mt-4">
-                      <Button variant="outline" size="sm" className="gap-2">
-                        <MapPin className="h-4 w-4" />
-                        Track Bus
-                      </Button>
-                      <Button variant="outline" size="sm" className="gap-2">
-                        <QrCode className="h-4 w-4" />
-                        Show QR
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
+        {/* History */}
         <TabsContent value="history" className="space-y-4">
           <Card className="bg-card/50 backdrop-blur-sm border border-border/50">
             <CardHeader>
@@ -367,6 +276,7 @@ const PassengerDashboard = () => {
           </Card>
         </TabsContent>
 
+        {/* Notifications */}
         <TabsContent value="notifications" className="space-y-4">
           <Card className="bg-card/50 backdrop-blur-sm border border-border/50">
             <CardHeader>

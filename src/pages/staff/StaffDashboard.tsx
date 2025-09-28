@@ -21,56 +21,57 @@ const StaffDashboard = () => {
   const [attendanceStatus, setAttendanceStatus] = useState<"checked-in" | "checked-out">("checked-out");
   const [currentLocation, setCurrentLocation] = useState("Central Station");
 
-  const todaySchedule = {
-    driver: "John Doe",
-    staffId: "DRV-234",
-    busNumber: "TN-123",
-    route: "Route 15A",
-    shift: "Morning Shift",
-    startTime: "06:00 AM",
-    endTime: "02:00 PM",
-    checkInTime: attendanceStatus === "checked-in" ? "05:45 AM" : null
-  };
+const todaySchedule = {
+  driver: "Harpreet Singh",
+  staffId: "DRV-PB-112",
+  busNumber: "PB-11-9087",
+  route: "Route PB-22B",
+  shift: "Morning Shift",
+  startTime: "06:00 AM",
+  endTime: "02:00 PM",
+  checkInTime: attendanceStatus === "checked-in" ? "05:45 AM" : null
+};
 
-  const routeStops = [
-    { name: "Central Station", time: "06:00 AM", status: "completed", passengers: 12 },
-    { name: "Mall Junction", time: "06:15 AM", status: "completed", passengers: 8 },
-    { name: "Tech Park Gate", time: "06:30 AM", status: "current", passengers: 15 },
-    { name: "University Campus", time: "06:45 AM", status: "upcoming", passengers: 0 },
-    { name: "Airport Terminal", time: "07:00 AM", status: "upcoming", passengers: 0 },
-    { name: "City Center", time: "07:20 AM", status: "upcoming", passengers: 0 }
-  ];
+const routeStops = [
+  { name: "Amritsar Bus Stand", time: "06:00 AM", status: "completed", passengers: 20 },
+  { name: "Jalandhar Bypass", time: "06:45 AM", status: "completed", passengers: 15 },
+  { name: "Ludhiana Junction", time: "07:30 AM", status: "current", passengers: 18 },
+  { name: "Khanna Bus Stand", time: "08:15 AM", status: "upcoming", passengers: 0 },
+  { name: "Rajpura Crossing", time: "09:00 AM", status: "upcoming", passengers: 0 },
+  { name: "Chandigarh ISBT-43", time: "09:45 AM", status: "upcoming", passengers: 0 }
+];
 
-  const recentAlerts = [
-    {
-      type: "traffic",
-      message: "Heavy traffic reported on MG Road",
-      time: "5 min ago",
-      severity: "medium",
-      action: "Consider alternate route"
-    },
-    {
-      type: "maintenance",
-      message: "Schedule maintenance reminder for next week",
-      time: "1 hour ago", 
-      severity: "low",
-      action: "Acknowledge"
-    },
-    {
-      type: "passenger",
-      message: "Passenger assistance request at Stop 12",
-      time: "15 min ago",
-      severity: "high",
-      action: "Respond immediately"
-    }
-  ];
+const recentAlerts = [
+  {
+    type: "traffic",
+    message: "Heavy traffic reported near Ludhiana Ferozepur Road",
+    time: "10 min ago",
+    severity: "medium",
+    action: "Consider short bypass"
+  },
+  {
+    type: "maintenance",
+    message: "Routine bus inspection due tomorrow at Patiala Depot",
+    time: "1 hour ago",
+    severity: "low",
+    action: "Acknowledge"
+  },
+  {
+    type: "passenger",
+    message: "Passenger medical assistance request at Jalandhar Bypass",
+    time: "20 min ago",
+    severity: "high",
+    action: "Respond immediately"
+  }
+];
 
-  const performanceStats = [
-    { title: "On-Time Arrivals", value: "94%", change: "+2%", icon: Clock, color: "text-secondary" },
-    { title: "Passenger Satisfaction", value: "4.8", change: "+0.2", icon: Users, color: "text-accent" },
-    { title: "Routes Completed", value: "156", change: "+8", icon: Route, color: "text-primary" },
-    { title: "Hours Logged", value: "42.5", change: "+3.5", icon: Calendar, color: "text-secondary" }
-  ];
+const performanceStats = [
+  { title: "On-Time Arrivals", value: "92%", change: "+1%", icon: Clock, color: "text-secondary" },
+  { title: "Passenger Satisfaction", value: "4.7", change: "+0.3", icon: Users, color: "text-accent" },
+  { title: "Routes Completed", value: "148", change: "+12", icon: Route, color: "text-primary" },
+  { title: "Hours Logged", value: "44", change: "+4", icon: Calendar, color: "text-secondary" }
+];
+
 
   const handleAttendance = () => {
     setAttendanceStatus(attendanceStatus === "checked-in" ? "checked-out" : "checked-in");
