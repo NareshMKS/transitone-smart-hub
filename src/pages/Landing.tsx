@@ -27,7 +27,7 @@ const Landing = () => {
       icon: Users,
       color: "text-secondary",
       bgGradient: "bg-gradient-success",
-      features: ["Live bus tracking", "Digital tickets", "Route search", "Trip history"]
+      features: ["Live bus tracking", "Route search", "Trip history"]
     },
     {
       id: "staff",
