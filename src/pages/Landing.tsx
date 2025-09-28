@@ -27,7 +27,7 @@ const Landing = () => {
       icon: Users,
       color: "text-secondary",
       bgGradient: "bg-gradient-success",
-      features: ["Live bus tracking", "Digital tickets", "Route search", "Trip history"]
+      features: ["Live bus tracking", "Route search", "Trip history"]
     },
     {
       id: "staff",
@@ -158,7 +158,7 @@ const Landing = () => {
       {/* Footer */}
       <footer className="border-t bg-card/50 backdrop-blur-sm py-8">
         <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>&copy; 2024 Transitone. Smart India Hackathon 2024 - Revolutionizing Public Transport</p>
+          <p>&copy; 2025 Transitone. Smart India Hackathon 2025 - Revolutionizing Public Transport</p>
         </div>
       </footer>
     </div>
