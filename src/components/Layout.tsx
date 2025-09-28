@@ -29,9 +29,9 @@ const Layout = ({ children }: LayoutProps) => {
       case "Admin":
         return "System Administrator";
       case "Passenger":
-        return "John Smith";
+        return "Mathap Singh";
       case "Staff":
-        return "Driver John Doe";
+        return "Driver Harpreet Singh";
       default:
         return "User";
     }
